@@ -17,7 +17,7 @@ class ViewController: UIViewController {
 
         var count = 0
         for i in array {
-            var res = i.filter{!$0.isWhitespace}
+            let res = i.filter{!$0.isWhitespace}
             count += res.count
         }
         print(count)
@@ -28,16 +28,23 @@ class ViewController: UIViewController {
 
 
         //2
-        let shortNames = array.filter { $0.count >= 5 }.flatMap({ $0 }).filter{!$0.isWhitespace}.count
+        let shortNames = array.filter { $0.count >= 5 }.map({ $0 })
         print(shortNames)
 
         //3
-        let shortNames1  = array.filter { $0.count >= 10 }.map({ $0 }).count
+        let shortNames1  = array.filter { $0.count >= 10 }.count
         print(shortNames1)
 
 
 
         //4
+        
+        let addsd = array.max { first, second in
+            first.count < second.count
+        }
+        print(addsd)
+        
+        
         var count1 = ""
         for i in array {
             if i.filter({!$0.isWhitespace}).count > count1.filter({!$0.isWhitespace}).count {
@@ -50,14 +57,14 @@ class ViewController: UIViewController {
 
         //5
 
-        var sortedArray = array.sorted { firstString, secondString in
+        let sortedArray = array.sorted { firstString, secondString in
             firstString.count < secondString.count
         }
         print (sortedArray)
 
 
         //6
-        var arrayWhithoutSpaces = array.map{elem in elem.filter({!$0.isWhitespace}) }
+        let arrayWhithoutSpaces = array.map{elem in elem.filter({!$0.isWhitespace}) }
         print(arrayWhithoutSpaces)
         // Do any additional setup after loading the view.
     }
